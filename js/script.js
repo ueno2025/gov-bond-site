@@ -1,5 +1,11 @@
+
+const type = document.body.dataset.kokusai;
+
+const csvFile = `../csv/kokusai${type}.csv`;
+
+
 // CSVファイルを読み込み、テーブルとグラフを作成
-fetch("csv/kokusai5.csv")
+fetch(csvFile)
     .then(response => response.text())
     .then(data => {
 

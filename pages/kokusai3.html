@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>個人向け国債金利推移サイト</title>
+</head>
+
+<body data-kokusai="3">
+    <main>
+
+        <h1>固定3年の金利推移</h1>
+
+
+        <div>
+            <label for="start-date">開始年月：</label>
+            <select id="start-date"></select>
+
+            <label for="end-date">終了年月：</label>
+            <select id="end-date"></select>
+        </div>
+        
+        <div class="chart-options">
+            <label>
+                <input type="checkbox" value="baseRate" checked>
+                基準金利
+            </label>
+
+            <label>
+                <input type="checkbox" value="taxBefore" checked>
+                利率（税引前）
+            </label>
+
+            <label>
+                <input type="checkbox" value="taxAfter" checked>
+                利率（税引後）
+            </label>
+        </div>
+
+        <canvas id="interest-chart"></canvas>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>募集月</th>
+                    <th>基準金利</th>
+                    <th>利率（税引前）</th>
+                    <th>利率（税引後）</th>
+                </tr>
+            </thead>
+
+            <tbody id="table-body">
+            </tbody>
+        </table>
+
+    </main>
+
+    <script src="../js/script.js"></script>
+</body>
+
+</html>
