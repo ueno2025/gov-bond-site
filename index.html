@@ -14,24 +14,33 @@
 
         <h1>固定5年の金利推移</h1>
 
-    <div class="chart-options">
-        <label>
-            <input type="checkbox" value="baseRate" checked>
-            基準金利
-        </label>
 
-        <label>
-            <input type="checkbox" value="taxBefore" checked>
-            利率（税引前）
-        </label>
+        <div>
+            <label for="start-date">開始年月：</label>
+            <select id="start-date"></select>
 
-        <label>
-            <input type="checkbox" value="taxAfter" checked>
-            利率（税引後）
-        </label>
-    </div>
+            <label for="end-date">終了年月：</label>
+            <select id="end-date"></select>
+        </div>
+        
+        <div class="chart-options">
+            <label>
+                <input type="checkbox" value="baseRate" checked>
+                基準金利
+            </label>
 
-    <canvas id="interest-chart"></canvas>
+            <label>
+                <input type="checkbox" value="taxBefore" checked>
+                利率（税引前）
+            </label>
+
+            <label>
+                <input type="checkbox" value="taxAfter" checked>
+                利率（税引後）
+            </label>
+        </div>
+
+        <canvas id="interest-chart"></canvas>
 
         <table>
             <thead>

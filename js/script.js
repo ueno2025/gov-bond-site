@@ -43,7 +43,37 @@ fetch("csv/kokusai5.csv")
         });
 
 
-        // グラフのデータ
+        // -------------------------
+        // 開始・終了年月の選択肢を作成
+        // -------------------------
+
+        const startDate = document.getElementById("start-date");
+        const endDate = document.getElementById("end-date");
+
+        labels.forEach(label => {
+
+            const startOption = document.createElement("option");
+            startOption.value = label;
+            startOption.textContent = label;
+            startDate.appendChild(startOption);
+
+            const endOption = document.createElement("option");
+            endOption.value = label;
+            endOption.textContent = label;
+            endDate.appendChild(endOption);
+
+        });
+
+
+        // 初期値
+        startDate.value = labels[0];
+        endDate.value = labels[labels.length - 1];
+
+
+        // -------------------------
+        // グラフ作成
+        // -------------------------
+
         const datasets = [
 
             {
@@ -70,7 +100,6 @@ fetch("csv/kokusai5.csv")
         ];
 
 
-        // グラフ作成
         const chart = new Chart(
             document.getElementById("interest-chart"),
             {
@@ -82,6 +111,7 @@ fetch("csv/kokusai5.csv")
                 },
 
                 options: {
+
                     scales: {
 
                         x: {
@@ -104,9 +134,12 @@ fetch("csv/kokusai5.csv")
         );
 
 
-        // チェックボックスの変更を監視
+        // -------------------------
+        // 金利の表示・非表示
+        // -------------------------
+
         const checkboxes =
-            document.querySelectorAll(".chart-options input");
+            document.querySelectorAll(".chart-options input[type='checkbox']");
 
         checkboxes.forEach(checkbox => {
 
@@ -120,7 +153,6 @@ fetch("csv/kokusai5.csv")
 
                 const datasetIndex = index[checkbox.value];
 
-                // 表示・非表示を切り替える
                 chart.data.datasets[datasetIndex].hidden =
                     !checkbox.checked;
 
@@ -129,5 +161,54 @@ fetch("csv/kokusai5.csv")
             });
 
         });
+
+
+        // -------------------------
+        // 期間変更
+        // -------------------------
+
+        function updateChart() {
+
+            const startIndex = labels.indexOf(startDate.value);
+            const endIndex = labels.indexOf(endDate.value);
+
+            // 開始年月が終了年月より後の場合
+            if (startIndex > endIndex) {
+                return;
+            }
+
+            // 指定された期間だけ取得
+            const filteredLabels =
+                labels.slice(startIndex, endIndex + 1);
+
+            const filteredBaseRates =
+                baseRates.slice(startIndex, endIndex + 1);
+
+            const filteredTaxBeforeRates =
+                taxBeforeRates.slice(startIndex, endIndex + 1);
+
+            const filteredTaxAfterRates =
+                taxAfterRates.slice(startIndex, endIndex + 1);
+
+
+            // グラフを更新
+            chart.data.labels = filteredLabels;
+
+            chart.data.datasets[0].data =
+                filteredBaseRates;
+
+            chart.data.datasets[1].data =
+                filteredTaxBeforeRates;
+
+            chart.data.datasets[2].data =
+                filteredTaxAfterRates;
+
+            chart.update();
+        }
+
+
+        // 開始年月・終了年月が変更されたらグラフ更新
+        startDate.addEventListener("change", updateChart);
+        endDate.addEventListener("change", updateChart);
 
     });
