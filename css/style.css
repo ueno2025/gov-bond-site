@@ -15,7 +15,8 @@ thead {
     background-color: #C0C0C0;
 }
 
-th, td {
+th,
+td {
     border: 1px solid;
     padding: 5px;
 }
@@ -24,6 +25,46 @@ tr:nth-child(even) {
     background-color: #ebedee;
 }
 
-.top-page-ul {
+.kokusai-list {
+    width: 80%;
     margin: auto;
+}
+
+
+.kokusai-item {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+
+    padding: 15px 20px;
+    margin: 20px;
+
+    background-color: white;
+}
+
+.kokusai-item a {
+    display: block;
+    text-decoration: none;
+    color: white;
+}
+
+.kokusai-item:hover {
+    background-color: #f5f5f5;
+}
+
+/* 3年 */
+.kokusai-item:nth-child(1) {
+    background-color: #F6A954;
+    border-color: #F6A954;
+}
+
+/* 5年 */
+.kokusai-item:nth-child(2) {
+    background-color: #1EB9EE;
+    border-color: #1EB9EE;
+}
+
+/* 10年 */
+.kokusai-item:nth-child(3) {
+    background-color: #EB6DA5;
+    border-color: #EB6DA5;
 }
