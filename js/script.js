@@ -1,4 +1,31 @@
 
+
+const menuButton = document.getElementById("menu-button");
+const sideMenu = document.getElementById("side-menu");
+const menuOverlay = document.getElementById("menu-overlay");
+
+
+/* メニューを開く */
+menuButton.addEventListener("click", () => {
+
+    sideMenu.classList.add("open");
+    menuOverlay.classList.add("open");
+
+});
+
+
+/* 背景をクリックして閉じる */
+menuOverlay.addEventListener("click", () => {
+
+    sideMenu.classList.remove("open");
+    menuOverlay.classList.remove("open");
+
+});
+
+
+
+// テーブル・グラフ処理
+
 const type = document.body.dataset.kokusai;
 
 const csvFile = `../csv/kokusai${type}.csv`;
