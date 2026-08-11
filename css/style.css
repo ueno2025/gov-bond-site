@@ -68,3 +68,15 @@ tr:nth-child(even) {
     background-color: #EB6DA5;
     border-color: #EB6DA5;
 }
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 450px;
+}
+
+@media (max-width: 600px) {
+    .chart-container {
+        height: 300px;
+    }
+}
