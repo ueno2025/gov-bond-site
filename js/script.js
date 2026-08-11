@@ -67,7 +67,7 @@ fetch(csvFile)
 
         // 指定期間のデータだけ表示
         const filteredTableData =
-            tableData.slice(startIndex, endIndex + 1);
+            tableData.slice(startIndex, endIndex + 1).reverse();
 
         filteredTableData.forEach(columns => {
 
